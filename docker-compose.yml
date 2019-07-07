@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+    docker-monitor:
+        image: portainer/portainer
+        restart: always
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - 'portainer-data:/data'
+        ports:
+            - 9000:9000
+        networks:
+            - docker-monitor-net
+
+volumes:
+    portainer-data:
+        labels:
+            pharmakon.keep: true
+
+networks:
+    docker-monitor-net:
+        name: docker-monitor-net
